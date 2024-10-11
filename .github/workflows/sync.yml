@@ -39,7 +39,7 @@ jobs:
       - name: Create Pull Request in Repo1
         uses: actions/checkout@v3
         with:
-          repository: yourusername/repo1
+          repository: vasylkiv-t/auto-merge
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           path: auto-merge
           fetch-depth: 0
