@@ -14,7 +14,7 @@ jobs:
       - name: Configure Git Identity
         run: |
           git config --global user.email "vasylkiv.t@gmail.com"
-          git config --global user.name "vasylkiv"
+          git config --global user.name "vasylkiv-t"
 
       - name: Checkout Repo2
         uses: actions/checkout@v3
