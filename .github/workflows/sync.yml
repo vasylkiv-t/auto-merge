@@ -37,6 +37,14 @@ jobs:
           git push origin $NEW_BRANCH
 
       - name: Create Pull Request in Repo1
+        uses: actions/checkout@v3
+        with:
+          repository: yourusername/repo1
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          path: auto-merge
+          fetch-depth: 0
+
+      - name: Create Pull Request in Repo1
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
