@@ -25,6 +25,7 @@ jobs:
           fetch-depth: 0
 
       - name: Create New Branch in Repo1
+        id: create_branch
         run: |
           cd auto-merge-2
           git clone https://vasylkiv-t:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/vasylkiv-t/auto-merge.git ../auto-merge
@@ -35,6 +36,7 @@ jobs:
           git fetch auto-merge-2
           git merge auto-merge-2/main -m "Merge changes from repo2" --allow-unrelated-histories || true
           git push origin $NEW_BRANCH
+          echo "::set-output name=new_branch::$NEW_BRANCH"
 
       - name: Create Pull Request in Repo1
         uses: actions/checkout@v3
@@ -44,17 +46,16 @@ jobs:
           path: auto-merge
           fetch-depth: 0
 
-      - name: Create Pull Request in Repo1
+      - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           commit-message: "Sync changes from repo2"
           title: "Automated Sync from repo2"
           body: "This pull request contains changes synced from repo2 to repo1."
-          branch: $NEW_BRANCH
+          branch: ${{ steps.create_branch.outputs.new_branch }}
           committer: GitHub <noreply@github.com>
           author: vasylkiv-t <vasylkiv-t@users.noreply.github.com>
           signoff: false
           delete-branch: false
           draft: false
-
