@@ -28,7 +28,7 @@ jobs:
         run: |
           cd auto-merge-2
           NEW_COMMIT=$(git rev-parse HEAD)
-          git clone https://github.com/vasylkiv-t/auto-merge.git ../auto-merge
+          git clone https://vasylkiv-t:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/vasylkiv-t/auto-merge.git ../auto-merge
           cd ../auto-merge
           NEW_BRANCH="sync-branch-$(date +%s)"
           git checkout -b $NEW_BRANCH
