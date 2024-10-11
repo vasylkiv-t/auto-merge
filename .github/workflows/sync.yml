@@ -37,7 +37,7 @@ jobs:
           git push origin $NEW_BRANCH
 
       - name: Create Pull Request in Repo1
-        uses: peter-evans/create-pull-request@v4
+        uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           commit-message: "Sync changes from repo2"
