@@ -19,21 +19,21 @@ jobs:
       - name: Checkout Repo2
         uses: actions/checkout@v3
         with:
-          repository: vasylkiv-t/auto-marge-2
+          repository: vasylkiv-t/auto-merge-2
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          path: auto-marge-2
+          path: auto-merge-2
           fetch-depth: 0
 
       - name: Create New Branch in Repo1
         run: |
-          cd auto-marge-2
+          cd auto-merge-2
           NEW_COMMIT=$(git rev-parse HEAD)
-          git clone https://github.com/vasylkiv-t/auto-marge.git ../auto-marge-2
-          cd ../auto-marge
+          git clone https://github.com/vasylkiv-t/auto-merge.git ../auto-merge
+          cd ../auto-merge
           NEW_BRANCH="sync-branch-$(date +%s)"
           git checkout -b $NEW_BRANCH
-          git remote add auto-marge-2 ../auto-marge-2
-          git fetch auto-marge-2
+          git remote add auto-merge-2 ../auto-merge-2
+          git fetch auto-merge-2
           git cherry-pick $NEW_COMMIT
           git push origin $NEW_BRANCH
 
