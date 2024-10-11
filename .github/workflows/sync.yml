@@ -27,14 +27,13 @@ jobs:
       - name: Create New Branch in Repo1
         run: |
           cd auto-merge-2
-          NEW_COMMIT=$(git rev-parse HEAD)
           git clone https://vasylkiv-t:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/vasylkiv-t/auto-merge.git ../auto-merge
           cd ../auto-merge
           NEW_BRANCH="sync-branch-$(date +%s)"
           git checkout -b $NEW_BRANCH
           git remote add auto-merge-2 ../auto-merge-2
           git fetch auto-merge-2
-          git cherry-pick $NEW_COMMIT
+          git merge repo2/main -m "Merge changes from repo2"
           git push origin $NEW_BRANCH
 
       - name: Create Pull Request in Repo1
