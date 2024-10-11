@@ -44,3 +44,9 @@ jobs:
           title: "Automated Sync from repo2"
           body: "This pull request contains changes synced from repo2 to repo1."
           branch: $NEW_BRANCH
+          committer: GitHub <noreply@github.com>
+          author: vasylkiv-t <vasylkiv-t@users.noreply.github.com>
+          signoff: false
+          delete-branch: false
+          draft: false
+
