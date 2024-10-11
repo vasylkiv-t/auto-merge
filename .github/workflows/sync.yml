@@ -49,6 +49,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
+          path: auto-merge  # Додаємо цей рядок
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           commit-message: "Sync changes from repo2"
           title: "Automated Sync from repo2"
@@ -59,3 +60,4 @@ jobs:
           signoff: false
           delete-branch: false
           draft: false
+
